@@ -24,7 +24,7 @@ begin
   );
   return new;
 end;
-$$ language plpgsql security definer;
+$$ language plpgsql security definer set search_path = public;
 
 create or replace trigger on_auth_user_created
   after insert on auth.users
@@ -42,6 +42,10 @@ create table if not exists progress (
 -- RLS (Row Level Security) 활성화
 alter table profiles enable row level security;
 alter table progress enable row level security;
+
+-- 프로필: 트리거에서 생성 가능
+create policy "서비스 프로필 생성" on profiles
+  for insert with check (true);
 
 -- 프로필: 본인만 읽기/수정 가능
 create policy "본인 프로필 읽기" on profiles
