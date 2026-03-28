@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Nav from '@/components/Nav'
 import styles from './page.module.css'
 
 const features = [
@@ -23,14 +24,11 @@ export default function LandingPage() {
   return (
     <div className={styles.page}>
       {/* NAV */}
-      <nav className={styles.nav}>
-        <Link href="/" className={styles.logo}>CodePath<span>_</span></Link>
-        <div className={styles.navLinks}>
-          <Link href="#features">기능</Link>
-          <Link href="#curriculum">커리큘럼</Link>
-          <Link href="/classroom" className={styles.navCta}>강의실 입장 →</Link>
-        </div>
-      </nav>
+      <Nav links={[
+        { href: '/courses', label: '코스' },
+        { href: '#features', label: '기능' },
+        { href: '#curriculum', label: '커리큘럼' },
+      ]} />
 
       {/* HERO */}
       <section className={styles.hero}>

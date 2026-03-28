@@ -1,0 +1,26 @@
+.nav { position: fixed; top: 0; width: 100%; z-index: 100; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; background: rgba(10,14,23,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+.logo { font-family: var(--font-mono); font-weight: 800; font-size: 1.4rem; color: var(--accent-green); }
+.logo span { color: var(--text-muted); }
+
+.right { display: flex; gap: 1.5rem; align-items: center; }
+.link { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1.5px; transition: color 0.3s; }
+.link:hover { color: var(--accent-green); }
+
+.loginBtn { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; background: var(--accent-green); color: var(--bg-deep); padding: 0.5rem 1.2rem; border-radius: 4px; transition: all 0.3s; }
+.loginBtn:hover { box-shadow: 0 0 20px rgba(0,255,136,0.15); transform: translateY(-1px); }
+
+.profileWrap { position: relative; }
+.profileBtn { background: none; border: none; cursor: pointer; padding: 0; }
+.avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--bg-card); border: 2px solid var(--accent-green); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 0.9rem; font-weight: 700; color: var(--accent-green); transition: all 0.3s; }
+.avatar:hover { box-shadow: 0 0 15px rgba(0,255,136,0.2); }
+
+.dropdown { position: absolute; top: calc(100% + 8px); right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; min-width: 220px; box-shadow: 0 8px 30px rgba(0,0,0,0.4); overflow: hidden; animation: dropIn 0.15s ease-out; }
+@keyframes dropIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+
+.dropdownHeader { padding: 1rem 1.2rem 0.75rem; }
+.dropdownName { display: block; font-weight: 700; font-size: 0.9rem; }
+.dropdownEmail { display: block; font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); margin-top: 0.15rem; }
+.dropdownDivider { height: 1px; background: var(--border); }
+
+.dropdownItem { display: block; width: 100%; padding: 0.7rem 1.2rem; font-size: 0.85rem; color: var(--text-secondary); background: none; border: none; cursor: pointer; text-align: left; font-family: inherit; transition: all 0.15s; }
+.dropdownItem:hover { background: rgba(0,255,136,0.05); color: var(--accent-green); }

@@ -20,13 +20,13 @@ export default function LoginPage() {
     setLoading(true)
     const { error } = await supabase.auth.signInWithPassword({ email, password })
     if (error) { setError(error.message); setLoading(false) }
-    else router.push('/classroom')
+    else router.push('/dashboard')
   }
 
   const handleGoogle = async () => {
     await supabase.auth.signInWithOAuth({
       provider: 'google',
-      options: { redirectTo: `${location.origin}/classroom` },
+      options: { redirectTo: `${location.origin}/dashboard` },
     })
   }
 

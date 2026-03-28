@@ -44,7 +44,7 @@ Python 등 프로그래밍 언어 강의를 체계적으로 **제작·관리(CMS
 
 | 역할 | 선택 | 이유 |
 |------|------|------|
-| 프레임워크 | **Next.js 14 (App Router)** | SSR/SSG, API Routes 내장, SEO 유리 |
+| 프레임워크 | **Next.js 16 (App Router)** | SSR/SSG, API Routes 내장, SEO 유리 |
 | 호스팅 | **Vercel** | Next.js 최적화, 무료 플랜 |
 | DB + Auth + Storage | **Supabase** | PostgreSQL, 인증 내장, 무료 500MB |
 | 결제 (예정) | 토스페이먼츠 | 국내 간편결제, 연동 쉬움 |
@@ -111,11 +111,12 @@ Python 등 프로그래밍 언어 강의를 체계적으로 **제작·관리(CMS
 - [x] Next.js 프로젝트 생성 (TypeScript + App Router)
 - [x] Supabase 클라이언트 설정 (`lib/supabase.ts`)
 - [x] DB 스키마 초안 (profiles, progress)
-- [ ] Git 저장소 초기화 + GitHub push
-- [ ] Supabase 프로젝트 실제 연동 확인
-  - [ ] DB 스키마 적용 (profiles, progress)
-  - [ ] 회원가입 / 로그인 동작 확인 (이메일 + Google OAuth)
-  - [ ] 로그인 상태에서 진행률 Supabase 저장 확인
+- [x] Git 저장소 초기화 + GitHub push
+- [x] Supabase 프로젝트 실제 연동 확인
+  - [x] DB 스키마 적용 (profiles, progress)
+  - [x] 회원가입 / 로그인 동작 확인 (이메일)
+  - [ ] Google OAuth 설정
+  - [x] 로그인 상태에서 진행률 Supabase 저장 확인
 - [ ] Vercel 배포 (첫 배포)
 
 **스택**: Next.js 16 / Vercel / Supabase (무료)
