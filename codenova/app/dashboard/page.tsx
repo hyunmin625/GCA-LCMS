@@ -23,8 +23,12 @@ export default function DashboardPage() {
 
   useEffect(() => {
     (async () => {
-      const { data: { user } } = await supabase.auth.getUser()
-      if (!user) { router.push('/auth/login'); return }
+      const { data: { user }, error: authError } = await supabase.auth.getUser()
+      if (!user || authError) {
+        await supabase.auth.signOut()
+        router.push('/auth/login')
+        return
+      }
 
       // Profile
       const { data: profileData } = await supabase

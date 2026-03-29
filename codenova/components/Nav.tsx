@@ -20,40 +20,58 @@ export default function Nav({ links = [] }: NavProps) {
   const menuRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    let ignore = false
+
+    const loadProfile = (userId: string) => {
+      supabase
+        .from('profiles')
+        .select('display_name, role')
+        .eq('id', userId)
+        .single()
+        .then(({ data: profile }) => {
+          if (!ignore && profile) {
+            setDisplayName(profile.display_name ?? '')
+            setRole(profile.role ?? 'student')
+          }
+        })
+    }
+
     // Initial auth check
-    supabase.auth.getUser().then(({ data }) => {
-      setUser(data.user)
-      if (data.user) {
-        supabase
-          .from('profiles')
-          .select('display_name, role')
-          .eq('id', data.user.id)
-          .single()
-          .then(({ data: profile }) => {
-            if (profile) { setDisplayName(profile.display_name ?? ''); setRole(profile.role ?? 'student') }
-          })
+    supabase.auth.getUser().then(({ data, error }) => {
+      if (ignore) return
+      if (error || !data.user) {
+        // Invalid/expired session — clean up silently
+        supabase.auth.signOut()
+        setUser(null)
+        setDisplayName('')
+        setRole('student')
+        return
       }
+      setUser(data.user)
+      loadProfile(data.user.id)
     })
 
     // Listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      if (ignore) return
+      if (event === 'TOKEN_REFRESHED' && !session) {
+        // Refresh failed — sign out cleanly
+        supabase.auth.signOut()
+        setUser(null)
+        setDisplayName('')
+        setRole('student')
+        return
+      }
       setUser(session?.user ?? null)
       if (session?.user) {
-        supabase
-          .from('profiles')
-          .select('display_name, role')
-          .eq('id', session.user.id)
-          .single()
-          .then(({ data: profile }) => {
-            if (profile) { setDisplayName(profile.display_name ?? ''); setRole(profile.role ?? 'student') }
-          })
+        loadProfile(session.user.id)
       } else {
         setDisplayName('')
         setRole('student')
       }
     })
 
-    return () => subscription.unsubscribe()
+    return () => { ignore = true; subscription.unsubscribe() }
   }, [])
 
   // Close menu on outside click

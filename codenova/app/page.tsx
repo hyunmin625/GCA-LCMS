@@ -12,12 +12,12 @@ const features = [
 ]
 
 const curriculumItems = [
-  { num: '01', title: 'Python 기초', meta: '8개 강의 · 약 4시간', tag: '입문', tagClass: 'beginner' },
-  { num: '02', title: '제어문과 함수', meta: '10개 강의 · 약 5시간', tag: '입문', tagClass: 'beginner' },
-  { num: '03', title: '자료구조', meta: '8개 강의 · 약 5시간', tag: '중급', tagClass: 'intermediate' },
-  { num: '04', title: '객체지향 프로그래밍', meta: '8개 강의 · 약 6시간', tag: '중급', tagClass: 'intermediate' },
-  { num: '05', title: '알고리즘 기초', meta: '8개 강의 · 약 6시간', tag: '고급', tagClass: 'advanced' },
-  { num: '06', title: '실전 프로젝트', meta: '6개 강의 · 약 8시간', tag: '고급', tagClass: 'advanced' },
+  { num: '01', title: '시작하기 — Python 설치와 첫 코드', meta: '4개 강의 · 약 40분', tag: '무료', tagClass: 'beginner' },
+  { num: '02', title: '데이터 다루기 — 변수, 문자열, 연산자', meta: '7개 강의 · 약 1.5시간', tag: '무료', tagClass: 'beginner' },
+  { num: '03', title: '흐름 제어 — 조건문과 반복문', meta: '7개 강의 · 약 1.7시간', tag: '무료', tagClass: 'beginner' },
+  { num: '04', title: '함수와 모듈 — 코드 재사용', meta: '7개 강의 · 약 1.6시간', tag: '무료', tagClass: 'beginner' },
+  { num: '05', title: '자료구조 · OOP · 알고리즘', meta: '19개 강의 · 약 7시간', tag: '마스터', tagClass: 'intermediate' },
+  { num: '06', title: '웹 개발 · 데이터 분석 · 실전 프로젝트', meta: '17개 강의 · 약 7시간', tag: '마스터', tagClass: 'advanced' },
 ]
 
 export default function LandingPage() {

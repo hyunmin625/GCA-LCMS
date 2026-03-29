@@ -20,8 +20,12 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   useEffect(() => {
     (async () => {
-      const { data: { user } } = await supabase.auth.getUser()
-      if (!user) { router.push('/auth/login'); return }
+      const { data: { user }, error: authError } = await supabase.auth.getUser()
+      if (!user || authError) {
+        await supabase.auth.signOut()
+        router.push('/auth/login')
+        return
+      }
       const { data: profile } = await supabase
         .from('profiles')
         .select('role')
