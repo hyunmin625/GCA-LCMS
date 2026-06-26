@@ -5,7 +5,17 @@ import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import styles from './course-detail.module.css'
 
-export default function EnrollButton({ courseId, courseSlug, isFree }: { courseId: string; courseSlug: string; isFree: boolean }) {
+export default function EnrollButton({
+  courseId,
+  courseSlug,
+  isFree,
+  price,
+}: {
+  courseId: string
+  courseSlug: string
+  isFree: boolean
+  price: number
+}) {
   const [user, setUser] = useState<{ id: string } | null>(null)
   const [enrolled, setEnrolled] = useState(false)
   const [loading, setLoading] = useState(true)
@@ -34,6 +44,13 @@ export default function EnrollButton({ courseId, courseSlug, isFree }: { courseI
       router.push('/auth/login')
       return
     }
+
+    // 유료 코스 → 결제 페이지로
+    if (!isFree) {
+      router.push(`/payment/${courseSlug}`)
+      return
+    }
+
     setLoading(true)
     await supabase.from('enrollments').insert({ user_id: user.id, course_id: courseId })
     setEnrolled(true)
@@ -53,7 +70,9 @@ export default function EnrollButton({ courseId, courseSlug, isFree }: { courseI
 
   return (
     <button className={styles.enrollBtn} onClick={handleEnroll}>
-      {isFree ? '무료 수강 시작 →' : `수강 신청 (${new Intl.NumberFormat('ko-KR').format(0)}원)`}
+      {isFree
+        ? '무료 수강 시작 →'
+        : `수강 신청 (${new Intl.NumberFormat('ko-KR').format(price)}원) →`}
     </button>
   )
 }

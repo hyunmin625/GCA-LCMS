@@ -76,16 +76,38 @@
 
 /* CURRICULUM */
 .curriculumSection { background: var(--bg-surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-.curriculumGrid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.2rem; }
-.curriculumItem { display: flex; align-items: center; gap: 1.2rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 1.4rem 1.6rem; transition: all 0.3s; }
+
+/* Course Block */
+.courseBlock { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 2.5rem; margin-bottom: 1rem; }
+.courseBlockMaster { border-color: rgba(0,212,255,0.25); background: linear-gradient(135deg, var(--bg-card) 0%, rgba(0,212,255,0.03) 100%); }
+.courseBlockHeader { display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem; margin-bottom: 2rem; }
+.courseBlockBadge { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.8rem; }
+.badgeFree { font-family: var(--font-mono); font-size: 0.7rem; font-weight: 700; padding: 0.3rem 0.8rem; border-radius: 4px; background: rgba(0,255,136,0.15); color: var(--accent-green); letter-spacing: 1px; }
+.badgePro { font-family: var(--font-mono); font-size: 0.7rem; font-weight: 700; padding: 0.3rem 0.8rem; border-radius: 4px; background: rgba(0,212,255,0.15); color: var(--accent-cyan); letter-spacing: 1px; }
+.badgePrice { font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700; color: var(--text-primary); }
+.courseBlockTitle { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem; letter-spacing: -0.3px; }
+.courseBlockMeta { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.6rem; }
+.courseBlockDesc { font-size: 0.95rem; color: var(--text-secondary); max-width: 560px; line-height: 1.6; }
+.btnMaster { background: var(--accent-cyan); color: var(--bg-deep); }
+.btnMaster:hover { box-shadow: 0 0 30px rgba(0,212,255,0.3), 0 4px 20px rgba(0,0,0,0.3); transform: translateY(-2px); }
+
+/* Course Block Grid */
+.courseBlockGrid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1rem; }
+
+/* Arrow Divider */
+.courseArrow { display: flex; align-items: center; gap: 1.2rem; padding: 2rem 0; }
+.courseArrowLine { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); }
+.courseArrowText { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); white-space: nowrap; letter-spacing: 1px; }
+
+/* Curriculum Items */
+.curriculumItem { display: flex; align-items: flex-start; gap: 1.2rem; background: rgba(0,0,0,0.2); border: 1px solid var(--border); border-radius: 10px; padding: 1.4rem 1.6rem; transition: all 0.3s; }
 .curriculumItem:hover { border-color: rgba(0,255,136,0.25); background: var(--bg-card-hover); }
-.curriculumNum { font-family: var(--font-mono); font-weight: 800; font-size: 1.4rem; color: var(--accent-green); min-width: 40px; opacity: 0.6; }
-.curriculumInfo h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.2rem; }
-.curriculumInfo p { font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-mono); }
-.curriculumTag { margin-left: auto; font-family: var(--font-mono); font-size: 0.65rem; padding: 0.3rem 0.7rem; border-radius: 4px; white-space: nowrap; }
-.beginner { background: rgba(0,255,136,0.1); color: var(--accent-green); }
-.intermediate { background: rgba(0,212,255,0.1); color: var(--accent-cyan); }
-.advanced { background: rgba(255,179,71,0.1); color: var(--accent-amber); }
+.masterItem:hover { border-color: rgba(0,212,255,0.25); }
+.curriculumNum { font-family: var(--font-mono); font-weight: 800; font-size: 1.4rem; color: var(--accent-green); min-width: 36px; opacity: 0.5; padding-top: 2px; }
+.masterNum { color: var(--accent-cyan); }
+.curriculumInfo h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem; }
+.curriculumDesc { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 0.4rem; }
+.curriculumMeta { font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono); }
 
 /* CTA */
 .ctaSection { padding: 8rem 2rem; text-align: center; position: relative; overflow: hidden; }
@@ -103,6 +125,8 @@
   .heroContent { grid-template-columns: 1fr; }
   .terminal { display: none; }
   .featuresGrid { grid-template-columns: 1fr; }
-  .curriculumGrid { grid-template-columns: 1fr; }
+  .courseBlockGrid { grid-template-columns: 1fr; }
+  .courseBlockHeader { flex-direction: column; }
+  .courseBlock { padding: 1.5rem; }
   .statsGrid { grid-template-columns: repeat(2,1fr); }
 }

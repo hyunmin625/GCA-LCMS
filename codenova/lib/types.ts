@@ -51,3 +51,16 @@ export type Profile = {
   created_at: string
   updated_at: string
 }
+
+export type Payment = {
+  id: string
+  user_id: string
+  course_id: string
+  amount: number
+  status: 'pending' | 'paid' | 'failed' | 'refunded'
+  payment_key: string | null
+  order_id: string | null
+  paid_at: string | null
+  refunded_at: string | null
+  created_at: string
+}

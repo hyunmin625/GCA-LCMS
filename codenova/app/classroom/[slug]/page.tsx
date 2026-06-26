@@ -61,6 +61,24 @@ export default function ClassroomPage() {
       const { data: { user } } = await supabase.auth.getUser()
       setUser(user)
 
+      // 유료 코스 접근 제어: 로그인 + 수강 등록 필수
+      if (!courseData.is_free) {
+        if (!user) {
+          window.location.href = `/auth/login?redirect=/classroom/${slug}`
+          return
+        }
+        const { data: enrollment } = await supabase
+          .from('enrollments')
+          .select('id')
+          .eq('user_id', user.id)
+          .eq('course_id', courseData.id)
+          .maybeSingle()
+        if (!enrollment) {
+          window.location.href = `/payment/${slug}`
+          return
+        }
+      }
+
       // Load progress
       if (user) {
         const { data: progressData } = await supabase

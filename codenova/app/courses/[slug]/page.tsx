@@ -71,7 +71,7 @@ export default async function CourseDetailPage({ params }: { params: Promise<{ s
                 <span className={styles.statLabel}>총 분량</span>
               </div>
             </div>
-            <EnrollButton courseId={course.id} courseSlug={course.slug} isFree={course.is_free} />
+            <EnrollButton courseId={course.id} courseSlug={course.slug} isFree={course.is_free} price={course.price} />
           </div>
         </div>
       </section>
